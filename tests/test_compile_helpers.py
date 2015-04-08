@@ -308,16 +308,16 @@ class TestCompileHelpers(object):
         ctx = {'BP_DIR': '.'}
         json = load_binary_index(ctx)
         versions = find_all_php_versions(json)
-        eq_(18, len(versions))
-        eq_(6, len([v for v in versions if v.startswith('5.4.')]))
-        eq_(6, len([v for v in versions if v.startswith('5.5.')]))
+        eq_(4, len([v for v in versions if v.startswith('5.4.')]))
+        eq_(4, len([v for v in versions if v.startswith('5.5.')]))
+        eq_(4, len([v for v in versions if v.startswith('5.6.')]))
 
     def test_find_php_extensions(self):
         ctx = {'BP_DIR': '.'}
         json = load_binary_index(ctx)
-        exts = find_all_php_extensions(json)
-        eq_(9, len(exts.keys()))
-        tmp = exts[[key for key in exts.keys() if key.startswith('5.4')][0]]
+        exts_by_php_version = find_all_php_extensions(json)
+        eq_(6, len(exts_by_php_version.keys()))
+        tmp = exts[[key for key in exts_by_php_version.keys() if key.startswith('5.4')][0]]
         assert 'amqp' in tmp
         assert 'apc' in tmp
         assert 'imap' in tmp
