@@ -176,7 +176,7 @@ class CloudFoundryInstaller(object):
         """
         exit_code, url = self.translate_dependency_url(url)
         if exit_code != 0:
-            print "Could not get translated url, exited with: %s", translate_url_output
+            print "Could not get translated url, exited with: %s", url 
             exit(1)
         self._log.debug("Installing direct [%s]", url)
         if not fileName:
