@@ -317,7 +317,7 @@ class TestCompileHelpers(object):
         json = load_binary_index(ctx)
         exts_by_php_version = find_all_php_extensions(json)
         eq_(6, len(exts_by_php_version.keys()))
-        tmp = exts[[key for key in exts_by_php_version.keys() if key.startswith('5.4')][0]]
+        tmp = exts_by_php_version[[key for key in exts_by_php_version.keys() if key.startswith('5.4')][0]]
         assert 'amqp' in tmp
         assert 'apc' in tmp
         assert 'imap' in tmp
